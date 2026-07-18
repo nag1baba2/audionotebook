@@ -19,3 +19,5 @@ frontend/.next/
 *.DS_Store
 test_book.py
 test_book.pdf
+*.pdf
+create_ml_pdf.py
