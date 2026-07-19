@@ -30,7 +30,7 @@ export default function Home() {
       formData.append("mode", mode);
       formData.append("language", language);
       formData.append("tone", tone);
-      const res = await fetch("http://localhost:8000/upload", { method: "POST", body: formData });
+      const res = await fetch("https://audionotebook.onrender.com/upload", { method: "POST", body: formData });
       const data = await res.json();
       router.push(`/processing/${data.job_id}`);
     } catch {

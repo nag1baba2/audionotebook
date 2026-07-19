@@ -27,13 +27,13 @@ export default function PlayerPage() {
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/player/${id}`)
+    fetch(`https://audionotebook.onrender.com/player/${id}`)
       .then((r) => r.json())
       .then((d) => {
         const chs = d.chapters || [];
         setChapters(chs);
         if (chs.length > 0 && audioRef.current) {
-          audioRef.current.src = `http://localhost:8000${chs[0].audio_url}`;
+          audioRef.current.src = `https://audionotebook.onrender.com${chs[0].audio_url}`;
           audioRef.current.load();
         }
       });
@@ -48,7 +48,7 @@ export default function PlayerPage() {
     if (!audio) return;
     audio.pause();
     setCurrent(i);
-    audio.src = `http://localhost:8000${chapters[i].audio_url}`;
+    audio.src = `https://audionotebook.onrender.com${chapters[i].audio_url}`;
     audio.load();
     audio.oncanplay = () => { audio.play().catch(() => {}); audio.oncanplay = null; };
     setPlaying(true);
@@ -73,7 +73,7 @@ export default function PlayerPage() {
     setMessages((prev) => [...prev, { role: "user", text: q }]);
     setChatLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/chat/${id}`, {
+      const res = await fetch(`https://audionotebook.onrender.com/chat/${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q }),

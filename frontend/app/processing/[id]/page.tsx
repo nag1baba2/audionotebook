@@ -19,7 +19,7 @@ export default function ProcessingPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const es = new EventSource(`http://localhost:8000/process/${id}`);
+    const es = new EventSource(`https://audionotebook.onrender.com/process/${id}`);
 
     es.onmessage = (e) => {
       const data: ProgressEvent = JSON.parse(e.data);
